@@ -1,0 +1,17 @@
+{
+  "title": "Réhabilitation de l'Ambassade de Mauritanie",
+  "location": "Dakar, Sénégal",
+  "client": "",
+  "category": "Réhabilitation",
+  "status": "realise",
+  "period": "2023 — 2024",
+  "budget": 28700000,
+  "description": "Réhabilitation complète de la résidence et des bureaux de l'Ambassade : façades, aménagements intérieurs et finitions haut de gamme.",
+  "cover": "/uploads/chantiers/dakar/dakar_exterior.webp",
+  "gallery": [
+    "/uploads/chantiers/dakar/dakar_exterior.webp",
+    "/uploads/chantiers/dakar/dakar_interior_bureau.webp",
+    "/uploads/chantiers/dakar/dakar_interior_couloir.webp"
+  ],
+  "order": 2
+}

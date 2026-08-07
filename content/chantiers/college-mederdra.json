@@ -1,0 +1,19 @@
+{
+  "title": "Construction d'un bloc de 8 salles de classe",
+  "location": "Collège de Mederdra",
+  "client": "",
+  "category": "Construction",
+  "status": "en_cours",
+  "startDate": "",
+  "expectedEnd": "",
+  "progress": null,
+  "budget": null,
+  "description": "",
+  "cover": "/uploads/chantiers/college-mederdra/photo-1.jpeg",
+  "gallery": [
+    "/uploads/chantiers/college-mederdra/photo-1.jpeg",
+    "/uploads/chantiers/college-mederdra/photo-2.jpeg",
+    "/uploads/chantiers/college-mederdra/photo-3.jpeg"
+  ],
+  "order": 3
+}

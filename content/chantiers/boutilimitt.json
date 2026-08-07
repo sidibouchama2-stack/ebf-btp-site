@@ -1,0 +1,16 @@
+{
+  "title": "École fondamentale complète",
+  "location": "AL Oudheybi, Boutilimitt",
+  "client": "",
+  "category": "Construction",
+  "status": "realise",
+  "period": "2023 — 2024",
+  "budget": 13360883,
+  "description": "Construction d'un nouvel établissement scolaire en zone semi-désertique, avec accès et voiries d'accompagnement.",
+  "cover": "/uploads/chantiers/boutilimitt/boutilimitt_front.webp",
+  "gallery": [
+    "/uploads/chantiers/boutilimitt/boutilimitt_front.webp",
+    "/uploads/chantiers/boutilimitt/boutilimitt_large.webp"
+  ],
+  "order": 3
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Achèvement de construction d'un lycée de 8 salles de classe",
+  "location": "Noubaghiya",
+  "client": "",
+  "category": "Achèvement",
+  "status": "en_cours",
+  "startDate": "",
+  "expectedEnd": "",
+  "progress": null,
+  "budget": null,
+  "description": "",
+  "cover": "/uploads/chantiers/noubaghiya/photo-1.jpeg",
+  "gallery": [
+    "/uploads/chantiers/noubaghiya/photo-1.jpeg",
+    "/uploads/chantiers/noubaghiya/photo-2.jpeg",
+    "/uploads/chantiers/noubaghiya/photo-3.jpeg",
+    "/uploads/chantiers/noubaghiya/photo-4.jpeg",
+    "/uploads/chantiers/noubaghiya/photo-5.jpeg",
+    "/uploads/chantiers/noubaghiya/photo-6.jpeg",
+    "/uploads/chantiers/noubaghiya/photo-7.jpeg"
+  ],
+  "order": 10
+}

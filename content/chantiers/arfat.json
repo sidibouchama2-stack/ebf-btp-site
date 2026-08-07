@@ -1,0 +1,17 @@
+{
+  "title": "École fondamentale complète",
+  "location": "Arfat, Nouakchott",
+  "client": "",
+  "category": "Construction",
+  "status": "realise",
+  "period": "2016 — 2017",
+  "budget": 12760883,
+  "description": "Construction complète d'une école fondamentale livrée clé en main : salles de classe, clôture et aménagements extérieurs.",
+  "cover": "/uploads/chantiers/arfat/arfat_front.webp",
+  "gallery": [
+    "/uploads/chantiers/arfat/arfat_front.webp",
+    "/uploads/chantiers/arfat/arfat_panorama.webp",
+    "/uploads/chantiers/arfat/arfat_side.webp"
+  ],
+  "order": 1
+}

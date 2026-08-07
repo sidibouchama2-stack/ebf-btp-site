@@ -1,0 +1,17 @@
+{
+  "title": "Extension de 8 salles de classe",
+  "location": "Ksar, Nouakchott",
+  "client": "",
+  "category": "Extension",
+  "status": "realise",
+  "period": "2022 — 2023",
+  "budget": 7200002,
+  "description": "Construction d'une extension de 8 salles de classe pour les écoles Excellence, École 1 et Pompier, dans le quartier du Ksar.",
+  "cover": "/uploads/chantiers/ksar/ksar_a.webp",
+  "gallery": [
+    "/uploads/chantiers/ksar/ksar_a.webp",
+    "/uploads/chantiers/ksar/ksar_b.webp",
+    "/uploads/chantiers/ksar/ksar_c.webp"
+  ],
+  "order": 5
+}

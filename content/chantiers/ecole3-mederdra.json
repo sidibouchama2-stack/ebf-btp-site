@@ -1,0 +1,18 @@
+{
+  "title": "Construction de 2 blocs de 2 salles de classe",
+  "location": "École n°3, Mederdra",
+  "client": "",
+  "category": "Construction",
+  "status": "en_cours",
+  "startDate": "",
+  "expectedEnd": "",
+  "progress": 45,
+  "budget": null,
+  "description": "Gros œuvre en cours : élévation des murs et ouvertures des salles de classe.",
+  "cover": "/uploads/chantiers/ecole3-mederdra/photo-1.jpeg",
+  "gallery": [
+    "/uploads/chantiers/ecole3-mederdra/photo-1.jpeg",
+    "/uploads/chantiers/ecole3-mederdra/photo-2.jpeg"
+  ],
+  "order": 5
+}

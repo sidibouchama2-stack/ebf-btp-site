@@ -1,0 +1,18 @@
+{
+  "title": "Extension de 12 salles de classe",
+  "location": "Nouakchott",
+  "client": "",
+  "category": "Extension",
+  "status": "realise",
+  "period": "2023 — 2024",
+  "budget": 11321918,
+  "description": "Construction des écoles Ibnou Sina et Excellence TVZ : 12 nouvelles salles de classe équipées, livrées avec mobilier scolaire.",
+  "cover": "/uploads/chantiers/nouakchott12/ibnou_sina.webp",
+  "gallery": [
+    "/uploads/chantiers/nouakchott12/ibnou_sina.webp",
+    "/uploads/chantiers/nouakchott12/excellence_tvz.webp",
+    "/uploads/chantiers/nouakchott12/classroom_1.webp",
+    "/uploads/chantiers/nouakchott12/classroom_2.webp"
+  ],
+  "order": 6
+}

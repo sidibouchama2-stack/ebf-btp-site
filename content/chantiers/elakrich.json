@@ -1,0 +1,18 @@
+{
+  "title": "Réhabilitation d'un poste de santé",
+  "location": "Elakrich (commune d'Ajweir)",
+  "client": "",
+  "category": "Réhabilitation",
+  "status": "en_cours",
+  "startDate": "",
+  "expectedEnd": "",
+  "progress": null,
+  "budget": null,
+  "description": "",
+  "cover": "/uploads/chantiers/elakrich/photo-1.jpeg",
+  "gallery": [
+    "/uploads/chantiers/elakrich/photo-1.jpeg",
+    "/uploads/chantiers/elakrich/photo-2.jpeg"
+  ],
+  "order": 8
+}

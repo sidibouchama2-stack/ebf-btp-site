@@ -1,0 +1,21 @@
+{
+  "title": "Construction de 2 blocs de 3 salles de classe",
+  "location": "École primaire, Idini (commune de Wad Naga)",
+  "client": "",
+  "category": "Construction",
+  "status": "en_cours",
+  "startDate": "",
+  "expectedEnd": "",
+  "progress": null,
+  "budget": null,
+  "description": "",
+  "cover": "/uploads/chantiers/idini/photo-1.jpeg",
+  "gallery": [
+    "/uploads/chantiers/idini/photo-1.jpeg",
+    "/uploads/chantiers/idini/photo-2.jpeg",
+    "/uploads/chantiers/idini/photo-3.jpeg",
+    "/uploads/chantiers/idini/photo-4.jpeg",
+    "/uploads/chantiers/idini/photo-5.jpeg"
+  ],
+  "order": 7
+}
