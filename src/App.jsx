@@ -3,7 +3,6 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import DirectorMessage from "./components/DirectorMessage";
 import Services from "./components/Services";
-import Process from "./components/Process";
 import OngoingProjects from "./components/OngoingProjects";
 import Projects from "./components/Projects";
 import Gallery from "./components/Gallery";
@@ -16,12 +15,11 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <DirectorMessage />
-        <Services />
-        <Process />
-        <OngoingProjects />
         <Projects />
+        <OngoingProjects />
+        <DirectorMessage />
+        <About />
+        <Services />
         <Gallery />
         <Contact />
       </main>

@@ -2,10 +2,10 @@ import logo from "../assets/img/logo.png";
 
 const LINKS = [
   { href: "#accueil", label: "Accueil" },
+  { href: "#realisations", label: "Réalisations" },
+  { href: "#travaux-en-cours", label: "Travaux en cours" },
   { href: "#a-propos", label: "À propos" },
   { href: "#services", label: "Services" },
-  { href: "#methode", label: "Méthode" },
-  { href: "#realisations", label: "Réalisations" },
   { href: "#contact", label: "Contact" },
 ];
 

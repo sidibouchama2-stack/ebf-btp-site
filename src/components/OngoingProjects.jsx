@@ -1,8 +1,8 @@
-import {
-  HiOutlineLocationMarker,
-  HiOutlineOfficeBuilding,
-} from "react-icons/hi";
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { HiOutlineLocationMarker, HiOutlinePlus } from "react-icons/hi";
 import Reveal from "./Reveal";
+import ProjectModal from "./ProjectModal";
 
 // Chaque chantier = un fichier JSON dans /content/chantiers/ (champ "status": "en_cours" | "realise").
 // Pour ajouter, modifier, retirer un chantier ou le marquer terminé, il suffit d'éditer ce fichier —
@@ -17,31 +17,21 @@ const ongoingProjects = Object.values(modules)
   .filter((p) => p.status === "en_cours")
   .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
-const CATEGORY_ORDER = ["Construction", "Extension", "Réhabilitation", "Achèvement"];
-
-function groupByCategory(items) {
-  const groups = new Map();
-  for (const item of items) {
-    const key = item.category || "Autres";
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(item);
-  }
-  return [...groups.entries()].sort(
-    (a, b) => CATEGORY_ORDER.indexOf(a[0]) - CATEGORY_ORDER.indexOf(b[0])
-  );
-}
-
-const CATEGORY_LABELS = {
-  Construction: "Constructions en cours",
-  Extension: "Extensions en cours",
-  Réhabilitation: "Réhabilitations en cours",
-  Achèvement: "Achèvement de travaux",
-};
+const FILTERS = ["Tous", ...new Set(ongoingProjects.map((p) => p.category))];
 
 export default function OngoingProjects() {
-  if (ongoingProjects.length === 0) return null;
+  const [selected, setSelected] = useState(null);
+  const [filter, setFilter] = useState("Tous");
 
-  const groups = groupByCategory(ongoingProjects);
+  const visible = useMemo(
+    () =>
+      filter === "Tous"
+        ? ongoingProjects
+        : ongoingProjects.filter((p) => p.category === filter),
+    [filter]
+  );
+
+  if (ongoingProjects.length === 0) return null;
 
   return (
     <section id="travaux-en-cours" className="section-pad bg-sand-50">
@@ -59,69 +49,78 @@ export default function OngoingProjects() {
           </p>
         </Reveal>
 
-        <div className="mt-12 space-y-10">
-          {groups.map(([category, items], gi) => (
-            <Reveal key={category} delay={gi * 0.08}>
-              <h3 className="mb-4 flex items-center gap-3 font-heading text-lg font-bold text-ink-900">
-                {CATEGORY_LABELS[category] || category}
-                <span className="rounded-full bg-primary-100 px-2.5 py-0.5 text-xs font-semibold text-primary-700">
-                  {items.length}
-                </span>
-              </h3>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                {items.map((project, i) => (
-                  <div
-                    key={`${project.title}-${project.location}-${i}`}
-                    className="flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-ink-900/5"
-                  >
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-primary-50">
-                      {project.cover ? (
-                        <img
-                          src={project.cover}
-                          alt={project.title}
-                          className="h-full w-full object-cover"
-                        />
-                      ) : (
-                        <HiOutlineOfficeBuilding
-                          size={24}
-                          className="text-primary-200"
-                        />
-                      )}
-                    </div>
-
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate font-semibold text-ink-900">
-                        {project.title}
-                      </p>
-                      <p className="flex items-center gap-1 text-sm text-ink-500">
-                        <HiOutlineLocationMarker size={14} />
-                        {project.location}
-                      </p>
-                    </div>
-
-                    {typeof project.progress === "number" && (
-                      <div className="w-24 shrink-0">
-                        <div className="flex items-center justify-between text-xs font-semibold text-ink-600">
-                          <span>{project.progress}%</span>
-                        </div>
-                        <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-ink-100">
-                          <div
-                            className="h-full rounded-full bg-accent-500 transition-all duration-700"
-                            style={{
-                              width: `${Math.min(100, Math.max(0, project.progress))}%`,
-                            }}
-                          />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </Reveal>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-2.5">
+          {FILTERS.map((f) => (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${
+                filter === f
+                  ? "bg-primary-700 text-white shadow-md shadow-primary-700/25"
+                  : "bg-ink-50 text-ink-600 hover:bg-ink-100"
+              }`}
+            >
+              {f}
+            </button>
           ))}
         </div>
+
+        <motion.div
+          layout
+          className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          <AnimatePresence mode="popLayout">
+            {visible.map((project) => (
+              <motion.div
+                key={project.title + project.location}
+                layout
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <button
+                  onClick={() => setSelected(project)}
+                  className="group relative block w-full overflow-hidden rounded-2xl text-left shadow-sm ring-1 ring-ink-900/5 transition-all hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-ink-100">
+                    <img
+                      src={project.cover}
+                      alt={project.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-ink-950/10 to-transparent" />
+                    <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-ink-800 opacity-0 shadow-md transition-opacity group-hover:opacity-100">
+                      <HiOutlinePlus size={18} />
+                    </span>
+                    <div className="absolute inset-x-0 bottom-0 p-5">
+                      <span className="inline-block rounded-full bg-accent-500 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white">
+                        {project.category}
+                      </span>
+                      <h3 className="mt-2 font-heading text-lg font-bold leading-tight text-white">
+                        {project.title}
+                      </h3>
+                      <div className="mt-2 flex items-center gap-1.5 text-sm text-white/75">
+                        <HiOutlineLocationMarker size={15} />
+                        {project.location}
+                        {typeof project.progress === "number" && (
+                          <>
+                            <span className="text-white/40">·</span>
+                            {project.progress}% réalisé
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
+
+      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </section>
   );
 }

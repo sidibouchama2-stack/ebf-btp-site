@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { HiOutlineX, HiOutlineChevronLeft, HiOutlineChevronRight, HiOutlineLocationMarker, HiOutlineCalendar, HiOutlineCurrencyDollar } from "react-icons/hi";
+import { HiOutlineX, HiOutlineChevronLeft, HiOutlineChevronRight, HiOutlineLocationMarker, HiOutlineCalendar, HiOutlineCurrencyDollar, HiOutlineChartBar } from "react-icons/hi";
 import { formatMRU } from "../utils/format";
 
 export default function ProjectModal({ project, onClose }) {
@@ -97,14 +97,26 @@ export default function ProjectModal({ project, onClose }) {
                 <HiOutlineLocationMarker className="text-primary-600" size={18} />
                 {project.location}
               </div>
-              <div className="flex items-center gap-2 text-sm text-ink-600">
-                <HiOutlineCalendar className="text-primary-600" size={18} />
-                {project.period}
-              </div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-ink-800">
-                <HiOutlineCurrencyDollar className="text-primary-600" size={18} />
-                {formatMRU(project.budget)}
-              </div>
+              {(project.period || project.startDate) && (
+                <div className="flex items-center gap-2 text-sm text-ink-600">
+                  <HiOutlineCalendar className="text-primary-600" size={18} />
+                  {project.period ||
+                    `${project.startDate}${project.expectedEnd ? ` – ${project.expectedEnd}` : ""}`}
+                </div>
+              )}
+              {project.budget ? (
+                <div className="flex items-center gap-2 text-sm font-semibold text-ink-800">
+                  <HiOutlineCurrencyDollar className="text-primary-600" size={18} />
+                  {formatMRU(project.budget)}
+                </div>
+              ) : (
+                typeof project.progress === "number" && (
+                  <div className="flex items-center gap-2 text-sm font-semibold text-ink-800">
+                    <HiOutlineChartBar className="text-primary-600" size={18} />
+                    {project.progress}% d'avancement
+                  </div>
+                )
+              )}
             </div>
           </div>
         </motion.div>

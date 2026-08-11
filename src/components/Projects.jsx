@@ -14,7 +14,7 @@ const projects = Object.values(modules)
   .filter((p) => p.status === "realise")
   .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
-const totalBudget = projects.reduce((sum, p) => sum + (p.budget ?? 0), 0);
+const totalBudget = 137717382;
 
 const FILTERS = ["Tous", ...new Set(projects.map((p) => p.category))];
 

@@ -68,7 +68,7 @@ export default function Hero() {
             { value: 2014, suffix: "", label: "Année de création" },
             { value: 12, suffix: "+", label: "Ans d'expérience BTP" },
             { value: 34, suffix: "", label: "Ouvrages livrés" },
-            { value: 79, suffix: " M+", label: "MRU de travaux gérés" },
+            { value: 138, suffix: " M+", label: "MRU de travaux gérés" },
           ].map((stat) => (
             <div key={stat.label}>
               <div className="font-heading text-3xl font-bold text-white sm:text-4xl">

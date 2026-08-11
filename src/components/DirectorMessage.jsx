@@ -1,6 +1,6 @@
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { TbQuote } from "react-icons/tb";
-import photo from "../assets/img/director_placeholder.png";
+import photo from "../assets/img/directeur.jpeg";
 import Reveal from "./Reveal";
 
 export default function DirectorMessage() {
@@ -13,7 +13,7 @@ export default function DirectorMessage() {
               <div className="absolute -inset-3 rounded-full border border-white/15" />
               <img
                 src={photo}
-                alt="Photo provisoire du Directeur Général"
+                alt="Mohamed Lemine Bouchama, Directeur Général d'EBF-BTP SARL"
                 className="h-44 w-44 rounded-full object-cover ring-4 ring-white/10 sm:h-52 sm:w-52"
               />
               <span className="absolute bottom-1 right-1 flex h-9 w-9 items-center justify-center rounded-full bg-accent-500 text-white ring-4 ring-primary-900">
@@ -24,9 +24,6 @@ export default function DirectorMessage() {
               Mohamed Lemine Bouchama
             </p>
             <p className="text-sm text-white/55">Directeur Général, EBF-BTP SARL</p>
-            <p className="mt-1 text-[11px] uppercase tracking-wide text-white/35">
-              Photo provisoire — à remplacer
-            </p>
           </div>
 
           <div>
