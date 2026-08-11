@@ -1,0 +1,68 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "chantiers"
+    label: "Chantiers"
+    label_singular: "Chantier"
+    folder: "content/chantiers"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Lieu", name: "location", widget: "string" }
+      - { label: "Client", name: "client", widget: "string", required: false }
+      - label: "Catégorie"
+        name: "category"
+        widget: "select"
+        options: ["Construction", "Réhabilitation", "Extension", "Achèvement"]
+      - label: "Statut"
+        name: "status"
+        widget: "select"
+        hint: "Passer à \"Réalisé\" déplace automatiquement le chantier vers la section Réalisations du site."
+        options:
+          - { label: "En cours", value: "en_cours" }
+          - { label: "Réalisé", value: "realise" }
+      - label: "Période (chantiers réalisés, ex. 2023 — 2024)"
+        name: "period"
+        widget: "string"
+        required: false
+      - label: "Date de début (chantiers en cours)"
+        name: "startDate"
+        widget: "string"
+        required: false
+      - label: "Date de fin prévue (chantiers en cours)"
+        name: "expectedEnd"
+        widget: "string"
+        required: false
+      - label: "Avancement en % (chantiers en cours)"
+        name: "progress"
+        widget: "number"
+        required: false
+        value_type: "int"
+        min: 0
+        max: 100
+      - label: "Budget en MRU (chantiers réalisés)"
+        name: "budget"
+        widget: "number"
+        required: false
+        value_type: "int"
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Photo de couverture", name: "cover", widget: "image", required: false }
+      - label: "Galerie photo"
+        name: "gallery"
+        widget: "list"
+        required: false
+        field: { label: "Photo", name: "image", widget: "image" }
+      - label: "Ordre d'affichage"
+        name: "order"
+        widget: "number"
+        required: false
+        value_type: "int"
