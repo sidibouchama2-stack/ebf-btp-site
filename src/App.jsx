@@ -15,9 +15,9 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <DirectorMessage />
         <Projects />
         <OngoingProjects />
-        <DirectorMessage />
         <About />
         <Services />
         <Gallery />

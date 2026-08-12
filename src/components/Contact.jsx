@@ -29,21 +29,34 @@ const INFO = [
   },
 ];
 
+function encodeForm(data) {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
+
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const body = `Nom : ${form.name}\nE-mail : ${form.email}\n\n${form.message}`;
-    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      form.subject || "Demande de devis — site web"
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-    setSent(true);
+    setError(false);
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encodeForm({ "form-name": "contact", ...form }),
+      });
+      setSent(true);
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch {
+      setError(true);
+    }
   };
 
   return (
@@ -116,9 +129,19 @@ export default function Contact() {
 
           <Reveal delay={0.1} className="lg:col-span-3">
             <form
+              name="contact"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
               className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-ink-900/5"
             >
+              <input type="hidden" name="form-name" value="contact" />
+              <p hidden>
+                <label>
+                  Ne pas remplir : <input name="bot-field" tabIndex="-1" autoComplete="off" />
+                </label>
+              </p>
+
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label className="text-sm font-medium text-ink-700">Nom complet</label>
@@ -178,8 +201,14 @@ export default function Contact() {
               </button>
 
               {sent && (
-                <p className="mt-4 text-sm text-primary-700">
-                  Votre client e-mail va s'ouvrir pour finaliser l'envoi vers{" "}
+                <p className="mt-4 text-sm font-medium text-primary-700">
+                  Votre message a bien été envoyé. Nous vous répondrons
+                  rapidement à {CONTACT_EMAIL}.
+                </p>
+              )}
+              {error && (
+                <p className="mt-4 text-sm font-medium text-red-600">
+                  Une erreur est survenue. Contactez-nous directement à{" "}
                   {CONTACT_EMAIL}.
                 </p>
               )}
