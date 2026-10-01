@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { HiOutlineLocationMarker, HiOutlinePlus } from "react-icons/hi";
 import { formatMRU } from "../utils/format";
 import Reveal from "./Reveal";
@@ -21,6 +21,7 @@ const FILTERS = ["Tous", ...new Set(projects.map((p) => p.category))];
 export default function Projects() {
   const [selected, setSelected] = useState(null);
   const [filter, setFilter] = useState("Tous");
+  const reduceMotion = useReducedMotion();
 
   const visible = useMemo(
     () =>
@@ -71,11 +72,15 @@ export default function Projects() {
             {visible.map((project) => (
               <motion.div
                 key={project.title + project.location}
-                layout
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                layout={!reduceMotion}
+                initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.94 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
+                transition={
+                  reduceMotion
+                    ? { duration: 0.15 }
+                    : { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }
+                }
               >
                 <button
                   onClick={() => setSelected(project)}

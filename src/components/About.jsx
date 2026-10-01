@@ -47,8 +47,14 @@ export default function About() {
           </p>
 
           <div className="mt-10 space-y-6">
-            {POINTS.map((point) => (
-              <div key={point.title} className="flex gap-4">
+            {POINTS.map((point, i) => (
+              <Reveal
+                key={point.title}
+                delay={0.1 + i * 0.08}
+                pop
+                y={12}
+                className="flex gap-4"
+              >
                 <div className="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-primary-50 text-primary-700">
                   <point.icon size={24} />
                 </div>
@@ -60,7 +66,7 @@ export default function About() {
                     {point.text}
                   </p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </Reveal>
