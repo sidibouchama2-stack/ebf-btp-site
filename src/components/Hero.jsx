@@ -31,7 +31,7 @@ export default function Hero() {
             Certifiée BAT2 — N°0077/CQCE-BTP/MHUAT/2024
           </span>
 
-          <h1 className="mt-6 text-balance font-heading text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 text-balance font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4.25rem]">
             Bâtir les infrastructures publiques de la Mauritanie de demain
           </h1>
 
@@ -58,26 +58,27 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-16 grid grid-cols-2 gap-6 border-t border-white/15 pt-8 sm:grid-cols-4"
-        >
+        <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/15 sm:grid-cols-4 sm:gap-x-0 sm:gap-y-0">
           {[
             { value: 2014, suffix: "", label: "Année de création" },
             { value: 12, suffix: "+", label: "Ans d'expérience BTP" },
             { value: 34, suffix: "", label: "Ouvrages livrés" },
             { value: 138, suffix: " M+", label: "MRU de travaux gérés" },
-          ].map((stat) => (
-            <div key={stat.label}>
+          ].map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="border-white/15 py-6 pr-6 sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:pl-6"
+            >
               <div className="font-heading text-3xl font-bold text-white sm:text-4xl">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="mt-1 text-sm text-white/65">{stat.label}</p>
-            </div>
+              <p className="mt-1.5 text-sm text-white/65">{stat.label}</p>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

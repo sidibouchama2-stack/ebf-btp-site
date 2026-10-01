@@ -47,6 +47,8 @@ export default function Services() {
             <Reveal
               key={service.title}
               delay={i * 0.08}
+              pop
+              y={16}
               className="group rounded-2xl bg-white p-7 shadow-sm ring-1 ring-ink-900/5 transition-all hover:-translate-y-1 hover:shadow-xl"
             >
               <div className="flex h-13 w-13 items-center justify-center rounded-xl bg-primary-700 text-white transition-colors group-hover:bg-accent-500">
