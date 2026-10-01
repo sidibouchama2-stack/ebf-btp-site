@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiOutlineX, HiOutlineChevronLeft, HiOutlineChevronRight, HiOutlineLocationMarker, HiOutlineCalendar, HiOutlineCurrencyDollar, HiOutlineChartBar } from "react-icons/hi";
 import { formatMRU } from "../utils/format";
 
 export default function ProjectModal({ project, onClose }) {
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    setIndex(0);
+  }, [project]);
+
+  useEffect(() => {
+    if (!project) return;
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") setIndex((i) => (i + 1) % project.gallery.length);
+      if (e.key === "ArrowLeft")
+        setIndex((i) => (i - 1 + project.gallery.length) % project.gallery.length);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [project, onClose]);
 
   if (!project) return null;
 

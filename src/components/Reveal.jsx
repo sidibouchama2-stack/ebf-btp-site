@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function Reveal({
   children,
@@ -7,6 +7,12 @@ export default function Reveal({
   className = "",
   as: Component = motion.div,
 }) {
+  const reduceMotion = useReducedMotion();
+
+  if (reduceMotion) {
+    return <Component className={className}>{children}</Component>;
+  }
+
   return (
     <Component
       className={className}

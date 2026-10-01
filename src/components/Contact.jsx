@@ -39,6 +39,7 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -46,6 +47,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(false);
+    setSubmitting(true);
     try {
       await fetch("/", {
         method: "POST",
@@ -56,6 +58,8 @@ export default function Contact() {
       setForm({ name: "", email: "", subject: "", message: "" });
     } catch {
       setError(true);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -194,10 +198,24 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent-500/30 transition-transform hover:-translate-y-0.5 hover:bg-accent-600"
+                disabled={submitting}
+                aria-busy={submitting}
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent-500/30 transition-transform hover:-translate-y-0.5 hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
               >
-                Envoyer le message
-                <HiOutlinePaperAirplane className="rotate-90" size={16} />
+                {submitting ? (
+                  <>
+                    <span
+                      aria-hidden="true"
+                      className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white"
+                    />
+                    Envoi en cours…
+                  </>
+                ) : (
+                  <>
+                    Envoyer le message
+                    <HiOutlinePaperAirplane className="rotate-90" size={16} />
+                  </>
+                )}
               </button>
 
               {sent && (

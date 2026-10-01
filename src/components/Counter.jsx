@@ -1,14 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
 import { formatNumber } from "../utils/format";
 
 export default function Counter({ value, suffix = "", duration = 1.6 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
+  const reduceMotion = useReducedMotion();
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
+    if (reduceMotion) {
+      setDisplay(value);
+      return;
+    }
     let start;
     let frame;
 
@@ -22,7 +27,7 @@ export default function Counter({ value, suffix = "", duration = 1.6 }) {
 
     frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
-  }, [inView, value, duration]);
+  }, [inView, value, duration, reduceMotion]);
 
   return (
     <span ref={ref}>
